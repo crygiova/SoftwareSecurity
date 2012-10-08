@@ -27,7 +27,8 @@
                     <td>To view information about schools in a country, please select a country below:</td>
                 </tr>
                 <tr>
-                    <td><form action="schools.jsp">
+                    <td>
+                    	<form action="schools.jsp" method="POST">
                             <strong>Select a country:</strong>
                             <select name="country">
                                 <c:forEach var="row" items="${country.rowsByIndex}">
@@ -37,7 +38,8 @@
                                 </c:forEach>
                             </select>
                             <input type="submit" value="submit" />
-                        </form></td>
+                        </form>
+                 	</td>
                 </tr>
             </tbody>
         </table>
