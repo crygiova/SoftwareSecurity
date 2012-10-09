@@ -90,6 +90,7 @@
 	//if not method POST
 	else
 	{
+		//using an error page <%@ page errorPage = "error.jsp" %>
 		//ERROR PAGE
 		out.println("Error..... u r trying to use GET and not POST");
 		//sould be a function in another .jsp that generate the page error
