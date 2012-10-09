@@ -6,6 +6,27 @@
     //control that the using method is POST
     if(request.getMethod().compareToIgnoreCase("POST")==0)
 	{ 
+	
+		String country_name = request.getParameter("country");
+			
+		//regular expr for sql injectoin, we have tu put it intoa constant library so 
+		if(country_name.matches("^[a-zA-Z0-9]+$"))
+		{
+			out.println("Correct matching "+country_name);
+		}
+		else
+		{
+			out.println("INNNNNNNCorrect matching "+country_name);
+		}
+		//white list;
+
+	
+	
+		String query = "SELECT * FROM country, school WHERE school.country = country.short_name AND country.full_name = ?";
+		//PreparedStatement pstmt = connection.prepareStatement(query);
+		//pstmt.setString(1,country_name);
+		//ResultSet result = pstmt.executeQuery();
+		//out.println(result.getString("--"+0+"--"));
 	%>
 	<%--  --%>
 
@@ -71,6 +92,6 @@
 	{
 		//ERROR PAGE
 		out.println("Error..... u r trying to use GET and not POST");
-			//sould be a function in another .jsp that generate the page error
+		//sould be a function in another .jsp that generate the page error
 	}
 	%>
