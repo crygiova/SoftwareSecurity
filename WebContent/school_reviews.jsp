@@ -74,9 +74,9 @@
 	//if not method POST
 	else
 	{
-		//ERROR PAGE
-		out.println("Error..... u r trying to use GET and not POST");
-			//sould be a function in another .jsp that generate the page error
+		//general jsp exception throw -> A generic exception known to the JSP engine; uncaught JspExceptions will result in an invocation of the errorpage machinery. 
+  		throw new JspException("Wrong Method! U r using GET and not POST");  
+  	
 	}
 	%>
 		

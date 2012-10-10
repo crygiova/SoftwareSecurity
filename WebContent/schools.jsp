@@ -1,5 +1,10 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page errorPage = "error.jsp" %>
+<%@ page language=ÓjavaÓ import=Ójava.sql.StatementÓ %>
+<%@ page language=ÓjavaÓ import=Ójava.sql.StatementÓ %>
+<%@ page language=ÓjavaÓ import=Ójava.sql.PreparedStatementÓ %>
+<%@ page language=ÓjavaÓ import=Ójava.sql.ResultSetÓ %>
 
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
@@ -20,13 +25,13 @@
 		}
 		//white list;
 
-	
+		
 	
 		String query = "SELECT * FROM country, school WHERE school.country = country.short_name AND country.full_name = ?";
-		//PreparedStatement pstmt = connection.prepareStatement(query);
-		//pstmt.setString(1,country_name);
-		//ResultSet result = pstmt.executeQuery();
-		//out.println(result.getString("--"+0+"--"));
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		pstmt.setString(1,country_name);
+		ResultSet result = pstmt.executeQuery();
+		out.println("--"+result.getString(0)+"--");
 	%>
 	<%--  --%>
 
@@ -90,9 +95,7 @@
 	//if not method POST
 	else
 	{
-		//using an error page <%@ page errorPage = "error.jsp" %>
-		//ERROR PAGE
-		out.println("Error..... u r trying to use GET and not POST");
-		//sould be a function in another .jsp that generate the page error
-	}
+		//general jsp exception throw -> A generic exception known to the JSP engine; uncaught JspExceptions will result in an invocation of the errorpage machinery. 
+  		throw new JspException("Wrong Method! U r using GET and not POST");  
+  	}
 	%>
