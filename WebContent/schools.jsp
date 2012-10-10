@@ -27,10 +27,9 @@
 		}
 		//white list;
 
-		
-	
 		String query = "SELECT * FROM country, school WHERE school.country = country.short_name AND country.full_name = ?";
-		PreparedStatement pstmt;// = connection.prepareStatement(query);
+		PreparedStatement pstmt;
+	// = connection.prepareStatement(query);
 	//	pstmt.setString(1,country_name);
 	//	ResultSet result = pstmt.executeQuery();
 	//	out.println("--"+result.getString(0)+"--");
