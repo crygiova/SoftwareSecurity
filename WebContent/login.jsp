@@ -1,8 +1,12 @@
 
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
+    //NEED TO ADD A CONTROL THAT WE DONT R USING THIS PAGE WITHOUT
+    
+    
     //control that the using method is POST
     if(request.getMethod().compareToIgnoreCase("POST")==0)
 	{ 
@@ -47,8 +51,12 @@
 	//if not method POST
 	else
 	{
+		
 		//general jsp exception throw -> A generic exception known to the JSP engine; uncaught JspExceptions will result in an invocation of the errorpage machinery. 
-  		throw new JspException("Wrong Method! U r using GET and not POST");  
+  		//throw new JspException("Wrong Method! U r using GET and not POST");  
+  		//Redirect to the page if u r not authenticating in the right way
+  		response.sendRedirect("./lutadmin.jsp");
+	
   	}
 	%>
     
