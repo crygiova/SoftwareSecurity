@@ -1,10 +1,11 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page errorPage = "error.jsp" %>
-<%@ page language=�java� import=�java.sql.Statement� %>
-<%@ page language=�java� import=�java.sql.Statement� %>
-<%@ page language=�java� import=�java.sql.PreparedStatement� %>
-<%@ page language=�java� import=�java.sql.ResultSet� %>
+<%@page errorPage = "error.jsp" %>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
 
 	<%-- Added by crygiova -- POST CONTROL  --%>
 	<%-- Added by gonch -- POST CONTROL  --%>
@@ -29,10 +30,10 @@
 		
 	
 		String query = "SELECT * FROM country, school WHERE school.country = country.short_name AND country.full_name = ?";
-		PreparedStatement pstmt = connection.prepareStatement(query);
-		pstmt.setString(1,country_name);
-		ResultSet result = pstmt.executeQuery();
-		out.println("--"+result.getString(0)+"--");
+		PreparedStatement pstmt;// = connection.prepareStatement(query);
+	//	pstmt.setString(1,country_name);
+	//	ResultSet result = pstmt.executeQuery();
+	//	out.println("--"+result.getString(0)+"--");
 	%>
 	<%--  --%>
 
