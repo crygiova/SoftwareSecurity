@@ -1,12 +1,13 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page errorPage = "error.jsp" %>
-<%@ page language=ÓjavaÓ import=Ójava.sql.StatementÓ %>
-<%@ page language=ÓjavaÓ import=Ójava.sql.StatementÓ %>
-<%@ page language=ÓjavaÓ import=Ójava.sql.PreparedStatementÓ %>
-<%@ page language=ÓjavaÓ import=Ójava.sql.ResultSetÓ %>
+<%@ page language=ï¿½javaï¿½ import=ï¿½java.sql.Statementï¿½ %>
+<%@ page language=ï¿½javaï¿½ import=ï¿½java.sql.Statementï¿½ %>
+<%@ page language=ï¿½javaï¿½ import=ï¿½java.sql.PreparedStatementï¿½ %>
+<%@ page language=ï¿½javaï¿½ import=ï¿½java.sql.ResultSetï¿½ %>
 
 	<%-- Added by crygiova -- POST CONTROL  --%>
+	<%-- Added by gonch -- POST CONTROL  --%>
     <% 
     //control that the using method is POST
     if(request.getMethod().compareToIgnoreCase("POST")==0)
