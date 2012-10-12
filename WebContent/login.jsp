@@ -1,6 +1,7 @@
 
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page errorPage = "error.jsp" %>
 
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
@@ -11,8 +12,36 @@
     if(request.getMethod().compareToIgnoreCase("POST")==0)
 	{ 
 	%>
-	<%--  --%>
-
+	<%-- Added by gonch -- POST CONTROL --%>
+	<%-- Whitelisting of username and password --%>
+		<%
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		//regular expr for sql injectoin, we have tu put it intoa constant library so 
+		boolean error = false;
+		if(username.matches("^[a-zA-Z0-9]+$"))
+		{
+			//out.println("Valid username: "+ username);
+		}
+		else
+		{
+			//out.println("Invalid username: "+username);
+			error=true;
+		}
+		if(password.matches("^[a-zA-Z0-9]+$"))
+		{
+			//out.println("Valid password: "+ password);
+		}
+		else
+		{
+			//out.println("Invalid password:  "+password);
+			error=true;
+		}
+		%>
+		<% if(!error)
+		{
+		%>
 		<sql:query var="users" dataSource="jdbc/lut2">
 		    SELECT * FROM admin_users
 		    WHERE  uname = ? <sql:param value="${param.username}" /> 
@@ -45,6 +74,12 @@
 		        </c:choose>
 		    </body>
 		</html>
+		<%}
+		else
+		{
+			out.println("Invalid username or Password");
+			//throw new JspException("Invalid username or Passowrd");  
+		}%>
     <%-- Added by crygiova -- POST CONTROL  --%>
 	<%
 	}
