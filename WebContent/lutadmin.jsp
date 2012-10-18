@@ -1,5 +1,12 @@
+<%
+    if(session.getId()!=null && session.getAttribute("user")!= null)
+    {
+    	response.sendRedirect("./adminhome.jsp");
+    }
+    else
+    {
+    %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,3 +37,5 @@
         </table>
     </body>
 </html>
+<%}
+%>

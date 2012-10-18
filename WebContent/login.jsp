@@ -6,8 +6,12 @@
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
     //NEED TO ADD A CONTROL THAT WE DONT R USING THIS PAGE WITHOUT
-    
-    
+    if(session.getId()!=null && session.getAttribute("user")!= null)
+    {
+    	response.sendRedirect("./adminhome.jsp");
+    }
+    else
+    {
 	    //control that the using method is POST
 	    if(request.getMethod().compareToIgnoreCase("POST")==0)
 		{ 
@@ -52,7 +56,12 @@
 			                <%response.sendRedirect("./error.jsp");%><!-- TODO lutadmin with error message -->
 			            </c:when>
 			            <c:otherwise>
-			                <%response.sendRedirect("./adminhome.jsp");%>
+			                <%
+			                
+			                session.setAttribute("user",username);
+			                out.println(session.getAttribute("user")+"ghghgh");
+			                response.sendRedirect("./adminhome.jsp");
+			                %>
 			           	</c:otherwise>
 			        </c:choose>
 			    </body>
@@ -78,5 +87,6 @@
 	  		response.sendRedirect("./lutadmin.jsp");
 		
 	  	}
+	 }
 	%>
     
