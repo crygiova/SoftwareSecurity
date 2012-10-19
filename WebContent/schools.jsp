@@ -54,6 +54,7 @@
 		                <tbody>
 		                    <tr>
 		                        <td><strong>Nickname: </strong></td>
+		          
 		                        <td><span style="font-size:smaller; font-style:italic;"><%=rs.getString(4) %></span></td>
 		                    </tr>
 		                    <tr>
