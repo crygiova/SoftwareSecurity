@@ -2,7 +2,7 @@ package swsec;
 
 import java.sql.*;
 
-public class Query {
+public class Query {	
 	
 	public static boolean loginAdminQuery(String usr,String passw) throws Exception
 	{
