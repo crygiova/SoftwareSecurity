@@ -1,7 +1,7 @@
-
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page errorPage = "error.jsp" %>
+<%@ page import="swsec.*" %>
 
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
@@ -31,8 +31,17 @@
 			%>
 			<% if(!error)
 			{
+				if(	Query.loginAdminQuery(username,password))
+				{
+					session.setAttribute("user",username);
+					response.sendRedirect("./adminhome.jsp");
+			    }
+				else
+				{
+						response.sendRedirect("./error.jsp");//TODO lutadmin redirect;
+				}
 			%>
-			<sql:query var="users" dataSource="jdbc/lut2">
+			<%-- <sql:query var="users" dataSource="jdbc/lut2">
 			    SELECT * FROM admin_users
 			    WHERE  uname = ? <sql:param value="${param.username}" /> 
 			    AND pw = ${param.password}
@@ -44,13 +53,6 @@
 			
 			<%@page contentType="text/html" pageEncoding="UTF-8"%>
 			<!DOCTYPE html>
-			<html>
-			    <head>
-			        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-			        <link rel="stylesheet" type="text/css" href="lutstyle.css">
-			        <title>LUT Admin pages</title>
-			    </head>
-			    <body>
 			        <c:choose>
 			            <c:when test="${ empty userDetails }">
 			                <%response.sendRedirect("./error.jsp");%><!-- TODO lutadmin with error message -->
@@ -63,9 +65,7 @@
 			                response.sendRedirect("./adminhome.jsp");
 			                %>
 			           	</c:otherwise>
-			        </c:choose>
-			    </body>
-			</html>
+			        </c:choose> --%>
 			<%}
 			else
 			{

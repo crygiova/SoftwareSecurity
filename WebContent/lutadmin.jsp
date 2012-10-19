@@ -5,6 +5,8 @@
     }
     else
     {
+    	//control if there was an login error
+    	
     %>
 
 <!DOCTYPE html>
