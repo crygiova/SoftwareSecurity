@@ -11,10 +11,10 @@ import java.sql.*;
 import java.util.Arrays;
 import java.security.SecureRandom;
 
-public class Owasp {
+public class Authentication {
   private final static int ITERATION_NUMBER = 1000;
 
-  public Owasp() {
+  public Authentication() {
   }
 
   /**

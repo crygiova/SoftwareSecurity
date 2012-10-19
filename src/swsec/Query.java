@@ -1,9 +1,12 @@
 package swsec;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class Query {	
 	
+	//TODO change to use Owasp
 	public static boolean loginAdminQuery(String usr,String passw) throws Exception
 	{
 		Integer count=0;

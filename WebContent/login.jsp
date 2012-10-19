@@ -30,43 +30,17 @@
 			}
 			%>
 			<% if(!error)//if the string request r matching with our regexpr
-			{
-				if(Query.loginAdminQuery(username, password))//if the loginadmin query returns true
+			{	
+				Authentication obj = new Authentication();
+				if(obj.authenticate(username, password))//if the loginadmin query returns true
 				{
 						session.setAttribute("user",username);
 						response.sendRedirect("./adminhome.jsp");
 			    }
 				else
 				{
-						response.sendRedirect("./lutadmin.jsp?error=true");//TODO lutadmin redirect;
+						response.sendRedirect("./lutadmin.jsp?error=true");
 				}
-			%>
-			<%-- <sql:query var="users" dataSource="jdbc/lut2">
-			    SELECT * FROM admin_users
-			    WHERE  uname = ? <sql:param value="${param.username}" /> 
-			    AND pw = ${param.password}
-			</sql:query>
-			
-			    
-			    
-			<c:set var="userDetails" value="${users.rows[0]}"/>
-			
-			<%@page contentType="text/html" pageEncoding="UTF-8"%>
-			<!DOCTYPE html>
-			        <c:choose>
-			            <c:when test="${ empty userDetails }">
-			                <%response.sendRedirect("./error.jsp");%><!-- TODO lutadmin with error message -->
-			            </c:when>
-			            <c:otherwise>
-			                <%
-			                
-			                session.setAttribute("user",username);
-			                out.println(session.getAttribute("user")+"ghghgh");
-			                response.sendRedirect("./adminhome.jsp");
-			                %>
-			           	</c:otherwise>
-			        </c:choose> --%>
-			<%
 			}
 			else
 			{
