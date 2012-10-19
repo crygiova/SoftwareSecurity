@@ -84,8 +84,6 @@ public class Authentication {
       }
   }
 
-
-
   /**
    * Inserts a new user in the database
    * @param con Connection An open connection to a databse
@@ -127,7 +125,6 @@ public class Authentication {
           close(ps);
       }
   }
-
 
   /**
    * From a password, a number of iterations and a salt,

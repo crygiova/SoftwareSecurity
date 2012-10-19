@@ -40,7 +40,11 @@
         //control if there was an login error
     	if(request.getParameter("error")!=null)
     	{
-    		out.println("<p> Login Error, Try again to LogIn <p>");
+    		%>
+    		<script>
+    		alert("Login Error, Try again to LogIn");
+    		</script>
+    		<%
     	}
         %>
     </body>
