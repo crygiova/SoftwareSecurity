@@ -5,7 +5,6 @@
     }
     else
     {
-    	//control if there was an login error
     	
     %>
 
@@ -37,6 +36,13 @@
                 </tr>
             </tbody>
         </table>
+        <%
+        //control if there was an login error
+    	if(request.getParameter("error")!=null)
+    	{
+    		out.println("<p> Login Error, Try again to LogIn <p>");
+    	}
+        %>
     </body>
 </html>
 <%}

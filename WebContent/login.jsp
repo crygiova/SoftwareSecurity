@@ -29,16 +29,16 @@
 				error = true;
 			}
 			%>
-			<% if(!error)
+			<% if(!error)//if the string request r matching with our regexpr
 			{
-				if(	Query.loginAdminQuery(username,password))
+				if(	Query.loginAdminQuery(username,password))//if the loginadmin query returns true
 				{
 					session.setAttribute("user",username);
 					response.sendRedirect("./adminhome.jsp");
 			    }
 				else
 				{
-						response.sendRedirect("./error.jsp");//TODO lutadmin redirect;
+						response.sendRedirect("./lutadmin.jsp?error=true");//TODO lutadmin redirect;
 				}
 			%>
 			<%-- <sql:query var="users" dataSource="jdbc/lut2">
@@ -66,10 +66,11 @@
 			                %>
 			           	</c:otherwise>
 			        </c:choose> --%>
-			<%}
+			<%
+			}
 			else
 			{
-				response.sendRedirect("./error.jsp");
+				response.sendRedirect("./lutadmin.jsp?error=true");
 				//throw new JspException("Invalid username or Passowrd");  
 			}%>
 	    <%-- Added by crygiova -- POST CONTROL  --%>
@@ -84,7 +85,7 @@
 	  		//Redirect to the page if u r not authenticating in the right way
 	  		
 	  		//Need to be made the control for the session, if the session is on or not!
-	  		response.sendRedirect("./lutadmin.jsp");
+	  		response.sendRedirect("./lutadmin.jsp?error=true");
 		
 	  	}
 	 }
