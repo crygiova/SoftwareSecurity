@@ -1,10 +1,16 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page errorPage = "error.jsp" %>
+<%@ page import="swsec.*" %>
+<%@page import="java.sql.*;" %>
+
 
 <sql:query var="country" dataSource="jdbc/lut2">
     SELECT full_name FROM country
 </sql:query>
-
+<%
+	ResultSet rs = Query.SelectCountry();
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -32,11 +38,14 @@
                     	<form action="schools.jsp" method="POST">
                             <strong>Select a country:</strong>
                             <select name="country">
-                                <c:forEach var="row" items="${country.rowsByIndex}">
-                                    <c:forEach var="column" items="${row}">
-                                        <option value="<c:out value="${column}"/>"><c:out value="${column}"/></option>
-                                    </c:forEach>
-                                </c:forEach>
+                                <%
+                                	while(rs.next())
+                                	{
+                                	%>
+                                		<option value="<c:out value="<%=rs.getString("full_name") %>"/>"><c:out value="<%=rs.getString("full_name") %>"/></option>
+                                	<% 
+                                	}
+                                %>
                             </select>
                             
                             <input type="submit" value="submit" />

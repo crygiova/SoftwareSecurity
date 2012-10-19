@@ -31,10 +31,10 @@
 			%>
 			<% if(!error)//if the string request r matching with our regexpr
 			{
-				if(	Query.loginAdminQuery(username,password))//if the loginadmin query returns true
+				if(Query.loginAdminQuery(username, password))//if the loginadmin query returns true
 				{
-					session.setAttribute("user",username);
-					response.sendRedirect("./adminhome.jsp");
+						session.setAttribute("user",username);
+						response.sendRedirect("./adminhome.jsp");
 			    }
 				else
 				{
@@ -71,7 +71,6 @@
 			else
 			{
 				response.sendRedirect("./lutadmin.jsp?error=true");
-				//throw new JspException("Invalid username or Passowrd");  
 			}%>
 	    <%-- Added by crygiova -- POST CONTROL  --%>
 		<%

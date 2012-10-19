@@ -1,11 +1,8 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page errorPage = "error.jsp" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
+<%@ page import="swsec.*" %>
+<%@page import="java.sql.*;" %>
 
 	<%-- Added by crygiova -- POST CONTROL  --%>
 	<%-- Added by gonch -- POST CONTROL  --%>
@@ -25,22 +22,12 @@
 		{
 			out.println("INNNNNNNCorrect matching "+country_name);
 		}
-		//white list;
-
-		String query = "SELECT * FROM country, school WHERE school.country = country.short_name AND country.full_name = ?";
-		PreparedStatement pstmt;
-	// = connection.prepareStatement(query);
-	//	pstmt.setString(1,country_name);
-	//	ResultSet result = pstmt.executeQuery();
-	//	out.println("--"+result.getString(0)+"--");
+		String country = request.getParameter("country");
+		ResultSet rs = Query.SelectSchools(country);
+//		out.print(rs.);
+		
 	%>
-	<%--  --%>
-
-		<sql:query var="school" dataSource="jdbc/lut2">
-		    SELECT * FROM country, school
-		    WHERE school.country = country.short_name
-		    AND country.full_name = ? <sql:param value="${param.country}"/>
-		</sql:query>
+	<%-- --%>
 		
 		<%@page contentType="text/html" pageEncoding="UTF-8"%>
 		<!DOCTYPE html>
@@ -48,45 +35,50 @@
 		    <head>
 		        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		        <link rel="stylesheet" type="text/css" href="lutstyle.css">
-		        <title>LUT 2.0 - ${param.country}</title>
+		        <title>LUT 2.0 - <% out.print(country); %>  </title>
 		    </head>
 		    <body>
-		        <h1> Approved schools in ${param.country}</h1>
+		        <h1> Approved schools in <% out.print(country); %></h1>
 		        <br><br>
-		        <c:forEach var="schoolDetails" items="${school.rowsByIndex}">
+		        <%
+		        while(rs.next())
+		        {		        
+		        %>
 		
 		            <table border="0">
 		                <thead>
 		                    <tr>
-		                        <th colspan="2">${schoolDetails[3]}</th>
+		                        <th colspan="2"><%=rs.getString(1) %></th>
 		                    </tr>
 		                </thead>
 		                <tbody>
 		                    <tr>
 		                        <td><strong>Nickname: </strong></td>
-		                        <td><span style="font-size:smaller; font-style:italic;">${schoolDetails[4]}</span></td>
+		                        <td><span style="font-size:smaller; font-style:italic;"><%=rs.getString(4) %></span></td>
 		                    </tr>
 		                    <tr>
 		                        <td><strong>Address: </strong></td>
-		                        <td>${schoolDetails[5]}
+		                        <td><%= rs.getString(5)%>
 		                            <br>
 		                            <span style="font-size:smaller; font-style:italic;">
-		                                zip: ${schoolDetails[6]}</span>
+		                                zip: <%= rs.getString(6)%></span>
 		                        </td>
 		                    </tr>
 		                    <tr>
 		                        <td>
 		                            <form action="school_reviews.jsp" method="POST">
-		                                <input type="hidden" name="school_id" value="${schoolDetails[2]}" />
-		                                <input type="hidden" name="school_fullname" value="${schoolDetails[3]}" />
-		                                <input type="hidden" name="school_shortname" value="${schoolDetails[4]}" />
+		                                <input type="hidden" name="school_id" value="<%= rs.getString(2)%>" />
+		                                <input type="hidden" name="school_fullname" value="<%= rs.getString(1)%>" />
+		                                <input type="hidden" name="school_shortname" value="<%= rs.getString(4)%>" />
 		                                <input type="submit" value="Read reviews" />
 		                            </form>
 		                        </td>
 		                    </tr>
 		                </tbody>
 		            </table>
-		        </c:forEach>
+		        <%
+		        }
+		        %>
 		    </body>
 		</html>
 		
