@@ -14,16 +14,11 @@
     		String country_name = request.getParameter("country");
     	
     		//regular expr for sql injectoin, we have tu put it into a constant library so 
-    		boolean invalidString;
-    		if(country_name.matches("^[a-zA-Z0-9]+$"))
+
+    		if(!country_name.matches("^[a-zA-Z0-9]+$"))
     		{
-    	invalidString = false;
+    			response.sendRedirect("./error.jsp");
     		}
-    		else
-    		{
-    	invalidString = true;
-    		}
-    		if (invalidString) response.sendRedirect("./error.jsp");
     		String country = request.getParameter("country");
     		ResultSet rs = Query.selectSchools(country);
     		if(!rs.next()) response.sendRedirect("./error.jsp");

@@ -12,17 +12,11 @@
     	String school_fullname = request.getParameter("school_fullname");
     	String school_shortname = request.getParameter("school_shortname");
     	String school_id = request.getParameter("school_id");
-    	boolean invalidString;
     	boolean empty = false;
-		if(school_fullname.matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) //also allow spaces!
+		if(!school_fullname.matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) //also allow spaces!
 		{
-			invalidString = false;
+			response.sendRedirect("./error.jsp");
 		}
-		else
-		{
-			invalidString = true;
-		}
-		//if (invalidString) response.sendRedirect("./error.jsp");
 		ResultSet rs = Query.selectReviews(school_fullname);
 		if(!rs.next()) 
 		{
@@ -62,29 +56,10 @@
 		        	out.print(rs.getString(3));
 		        	out.print("<br><br>");
 		        	out.print(rs.getString(2));
+		        	out.print("<br><br>");
 		        }
 		        %>
-		
-		        <!-- looping through all available reviews - if there are any 
-		        
-		       
-		        <c:set var="review" value="${reviews.rows[0]}"/>
-		        <c:choose>
-		            <c:when test="${ empty review }">
-		                No reviews for ${param.school_fullname} yet. Help us out by adding one! 
-		                <br><br>
-		            </c:when>
-		            <c:otherwise>
-		                <c:forEach var="review" items="${reviews.rowsByIndex}">
-		                    <c:out value="${review[2]}" /><br>
-		                    <i>${review[1]}</i>
-		                    <br><br>
-		                </c:forEach>
-		            </c:otherwise>
-		        </c:choose>-->
-		
-		
-		
+
 		        <table border="0">
 		            <thead>
 		                <tr>
@@ -96,8 +71,7 @@
 		                    <td>
 		                        <form action="add_review.jsp"  method="POST">
 		                            <input type="hidden" name="school_id" value="<%out.print(school_id); %>" />
-		                            <textarea name="review" rows=10 cols=60 wrap="physical" autofocus="on" > 
-		                            </textarea>
+		                            <textarea name="review" rows=10 cols=60 autofocus="on"></textarea>
 		                            <br><br>
 		                            Your name: <input type="text" name="name" />
 		                            <br><br>

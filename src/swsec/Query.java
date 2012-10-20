@@ -28,4 +28,14 @@ public class Query {
 		stat.setString(1,school_name);
 		return stat.executeQuery();
 	}
+	
+	public static void insertReview(String school_id, String name, String review) throws Exception
+	{
+		Connection con = ConnectionDB.getConnection();
+		PreparedStatement stat = con.prepareStatement("INSERT INTO user_reviews VALUES (?,?,?)");
+		stat.setString(1, school_id);
+		stat.setString(2, name);
+		stat.setString(3, review);
+		stat.executeQuery();
+	}
 }
