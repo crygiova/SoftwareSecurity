@@ -19,8 +19,15 @@
 					<h1>Login succeeded</h1> 
 					                Welcome <% out.println(session.getAttribute("user"));%>
 					                <br>
-					                Unfortunately, there is no admin functionality here.<br>
-					                You need to figure out how to tamper with the application some other way.
+					                <br>
+						            <table>
+						              	<tr> 	
+						              		<td><a href="manageCountry.jsp">Manage Countries</a></td>
+						              		<td><a href="manageSchools.jsp">Manage Schools</a></td>
+						              		<td><a href="manageUsers.jsp">  Manage Users</a></td>
+						              	</tr>
+					              	</table>
+					              
 		
 				 <jsp:include page="logoutPage.jsp" flush="true"/>			                
 		</body>

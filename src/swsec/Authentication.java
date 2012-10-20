@@ -17,7 +17,8 @@ public class Authentication {
   public Authentication() {
   }
 
-  /**
+  /** tab	CREDENTIAL-> ADMINISTRATION
+   * 	tab NORMAL_USER -> USERS	
    * Authenticates the user with a given login and password
    * If password and/or login is null then always returns false.
    * If the user does not exist in the database returns false.

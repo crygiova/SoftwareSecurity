@@ -4,5 +4,5 @@
 <%session.invalidate();%>
 <br>
 <br>
-You logge out. Please try again 
+You logged out. Please try again 
 <a href="lutadmin.jsp"><b>Login</b></a>
