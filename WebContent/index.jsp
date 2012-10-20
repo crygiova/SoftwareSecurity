@@ -4,10 +4,6 @@
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
 
-
-<sql:query var="country" dataSource="jdbc/lut2">
-    SELECT full_name FROM country
-</sql:query>
 <%
 	ResultSet rs = Query.SelectCountry();
 %>
