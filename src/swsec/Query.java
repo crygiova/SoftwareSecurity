@@ -13,11 +13,19 @@ public class Query {
 		return rs;		
 	}
 	
-	public static ResultSet SelectSchools(String countryFullName) throws Exception
+	public static ResultSet selectSchools(String countryFullName) throws Exception
 	{
 		Connection con = ConnectionDB.getConnection();
 		PreparedStatement stat=con.prepareStatement("SELECT * FROM country, school WHERE school.country = country.short_name AND country.full_name = ?");
 		stat.setString(1, countryFullName);
+		return stat.executeQuery();
+	}
+	
+	public static ResultSet selectReviews(String school_name) throws Exception
+	{
+		Connection con = ConnectionDB.getConnection();
+		PreparedStatement  stat = con.prepareStatement("SELECT * FROM user_reviews, school WHERE user_reviews.school_id = school.school_id AND school.full_name = ?");
+		stat.setString(1,school_name);
 		return stat.executeQuery();
 	}
 }

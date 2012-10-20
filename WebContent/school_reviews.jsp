@@ -1,19 +1,44 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page errorPage = "error.jsp" %>
+<%@ page import="swsec.*" %>
+<%@page import="java.sql.*;" %>
 	
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
     //control that the using method is POST
     if(request.getMethod().compareToIgnoreCase("POST")==0)
 	{ 
+    	String school_fullname = request.getParameter("school_fullname");
+    	String school_shortname = request.getParameter("school_shortname");
+    	String school_id = request.getParameter("school_id");
+    	boolean invalidString;
+    	boolean empty = false;
+		if(school_fullname.matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) //also allow spaces!
+		{
+			invalidString = false;
+		}
+		else
+		{
+			invalidString = true;
+		}
+		//if (invalidString) response.sendRedirect("./error.jsp");
+		ResultSet rs = Query.selectReviews(school_fullname);
+		if(!rs.next()) 
+		{
+			empty = true;
+			out.println("No reviews for "+ school_fullname + " yet. Help us out by adding one!"); 
+		}
+		rs.previous();
+    	
 	%>
-	<%--  --%>
+	<%--  
 	
 		<sql:query var="reviews" dataSource="jdbc/lut2">
 		    SELECT * FROM user_reviews, school
 		    WHERE user_reviews.school_id = school.school_id
 		    AND school.full_name = ? <sql:param value="${param.school_fullname}"/>
-		</sql:query>
+		</sql:query>--%>
 		
 		<%@page contentType="text/html" pageEncoding="UTF-8"%>
 		<!DOCTYPE html>
@@ -21,12 +46,28 @@
 		    <head>
 		        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		        <link rel="stylesheet" type="text/css" href="lutstyle.css">
-		        <title>Reviews for ${param.school_fullname}</title>
+		        <title>Reviews for <% out.print(school_fullname); %></title>
 		    </head>
 		    <body>
-		        <h1>Reviews for ${param.school_shortname}</h1>
+		        <%
+		       	if(!empty)
+		       	{
+		       	%>
+		        <h1>Reviews for <% out.print(school_shortname); %></h1>
+		        <%
+		        }
+		       	else out.print("<br><br>");
+		        while(rs.next())
+		        {
+		        	out.print(rs.getString(3));
+		        	out.print("<br><br>");
+		        	out.print(rs.getString(2));
+		        }
+		        %>
 		
-		        <!-- looping through all available reviews - if there are any -->
+		        <!-- looping through all available reviews - if there are any 
+		        
+		       
 		        <c:set var="review" value="${reviews.rows[0]}"/>
 		        <c:choose>
 		            <c:when test="${ empty review }">
@@ -40,21 +81,21 @@
 		                    <br><br>
 		                </c:forEach>
 		            </c:otherwise>
-		        </c:choose>
+		        </c:choose>-->
 		
 		
 		
 		        <table border="0">
 		            <thead>
 		                <tr>
-		                    <th colspan="2">Help improving LUT2.0 by adding a review of ${param.school_shortname}</th>
+		                    <th colspan="2">Help improving LUT2.0 by adding a review of <%out.print(school_shortname); %></th>
 		                </tr>
 		            </thead>
 		            <tbody>
 		                <tr>
 		                    <td>
-		                        <form action="add_review.jsp"  method="post">
-		                            <input type="hidden" name="school_id" value="${param.school_id}" />
+		                        <form action="add_review.jsp"  method="POST">
+		                            <input type="hidden" name="school_id" value="<%out.print(school_id); %>" />
 		                            <textarea name="review" rows=10 cols=60 wrap="physical" autofocus="on" > 
 		                            </textarea>
 		                            <br><br>
