@@ -1,6 +1,6 @@
 <%@ page import="swsec.*" %>
 <%
-    if(!SessionControl.isExpired(session))
+    if(!SessionControl.isExpiredAdmin(session))
     {
     	response.sendRedirect("./adminhome.jsp");
     }

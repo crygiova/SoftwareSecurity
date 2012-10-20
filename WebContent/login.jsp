@@ -6,7 +6,7 @@
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
     
-    if(!SessionControl.isExpired(session))
+    if(!SessionControl.isExpiredAdmin(session))
     {
     	response.sendRedirect("./adminhome.jsp");
     }
@@ -35,6 +35,7 @@
 				if(obj.authenticate(username, password))//if the loginadmin query returns true
 				{
 						session.setAttribute("user",username);//creating a session
+						session.setAttribute("admin","yes");//creating a flag for the session
 						session.setMaxInactiveInterval(SessionControl.getSessShort());
 						response.sendRedirect("./adminhome.jsp");
 			    }

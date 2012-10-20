@@ -10,9 +10,9 @@ public class SessionControl {
 	
 	/**TRUE if the session is expired
 	 * FALSE if is not expired*/
-	public static boolean isExpired(HttpSession session)
+	public static boolean isExpiredAdmin(HttpSession session)
 	{
-		if(session.getAttribute("user")==null || session.getAttribute("user")=="")
+		if((session.getAttribute("user")==null || session.getAttribute("user")=="") && session.getAttribute("admin")!="yes")
 		{	
 			return true;
 		}	

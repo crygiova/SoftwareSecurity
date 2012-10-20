@@ -1,6 +1,6 @@
 <%@ page import="swsec.*" %>
 <%-- Home page for the administration --%>
-	<%if(SessionControl.isExpired(session)) //controls if the last session was expired
+	<%if(SessionControl.isExpiredAdmin(session)) //controls if the last session was expired
 	{
 			response.sendRedirect("./logout.jsp");
 	}
