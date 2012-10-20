@@ -6,7 +6,7 @@
  --%>
 <%@ page isErrorPage = "true" %>
 <div class="message">
-An error is occurred:<br /><br />
+An error has occurred:<br /><br />
 </div>
 </body>
 </html>
