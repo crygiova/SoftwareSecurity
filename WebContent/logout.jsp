@@ -1,3 +1,4 @@
+<%-- Invalidation of the session --%>
 <%@page import="java.util.*" %>
 
 <%session.invalidate();%>

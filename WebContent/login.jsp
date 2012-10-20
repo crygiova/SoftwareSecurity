@@ -5,8 +5,8 @@
 
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
-    //NEED TO ADD A CONTROL THAT WE DONT R USING THIS PAGE WITHOUT
-    if(session.getId()!=null && session.getAttribute("user")!= null)
+    
+    if(!SessionControl.isExpired(session))
     {
     	response.sendRedirect("./adminhome.jsp");
     }
@@ -34,7 +34,8 @@
 				Authentication obj = new Authentication();
 				if(obj.authenticate(username, password))//if the loginadmin query returns true
 				{
-						session.setAttribute("user",username);
+						session.setAttribute("user",username);//creating a session
+						session.setMaxInactiveInterval(SessionControl.getSessShort());
 						response.sendRedirect("./adminhome.jsp");
 			    }
 				else
@@ -52,11 +53,6 @@
 		//if not method POST
 		else
 		{
-			
-			//general jsp exception throw -> A generic exception known to the JSP engine; uncaught JspExceptions will result in an invocation of the errorpage machinery. 
-	  		//throw new JspException("Wrong Method! U r using GET and not POST");  
-	  		//Redirect to the page if u r not authenticating in the right way
-	  		
 	  		//Need to be made the control for the session, if the session is on or not!
 	  		response.sendRedirect("./lutadmin.jsp?error=true");
 		
