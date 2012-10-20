@@ -53,9 +53,7 @@
 		//if not method POST
 		else
 		{
-	  		//Need to be made the control for the session, if the session is on or not!
-	  		response.sendRedirect("./lutadmin.jsp?error=true");
-		
+	  			response.sendRedirect("./lutadmin.jsp?error=true&type=expired");
 	  	}
 	 }
 	%>
