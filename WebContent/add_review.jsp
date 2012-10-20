@@ -14,27 +14,20 @@
     	String review = request.getParameter("review");
     	boolean invalidString;
     	boolean empty = false;
-    	if(!name.matches(("^[a-zA-Z0-9]+$")))
+    	if(!name.matches(("^[a-zA-Z0-9]+$")) || name.length()==0)
     	{
-    		//response.sendRedirect("./error.jsp"); //Invalid user name
+    		response.sendRedirect("./error.jsp"); //Invalid user name
     	}
-    	if(!review.matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$"))
+    	if(!review.matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$") || review.length()==0)
     	{
-    		//response.sendRedirect("./error.jsp"); //Invalid review chars
+    		response.sendRedirect("./error.jsp"); //Invalid review chars
     	}
-		if(!school_id.matches("^[a-zA-Z0-9]+$"))
+		if(!school_id.matches("^[a-zA-Z0-9]+$") || review.length()==0)
 		{
-			//response.sendRedirect("./error.jsp"); //Invalid school ID
+			response.sendRedirect("./error.jsp"); //Invalid school ID
 		}
-		Query.insertReview(school_id,name,review);
+		Query.insertReview(school_id, name, review);
 	%>
-	<%--  
-	
-		<sql:transaction dataSource="jdbc/lut2">
-		    <sql:update var="count">
-		        INSERT INTO user_reviews VALUES ('${param.school_id}', '${param.name}', '${param.review}');
-		    </sql:update>
-		</sql:transaction>--%>
 		
 		<%@page contentType="text/html" pageEncoding="UTF-8"%>
 		<!DOCTYPE html>

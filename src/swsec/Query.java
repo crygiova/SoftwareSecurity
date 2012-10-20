@@ -33,9 +33,9 @@ public class Query {
 	{
 		Connection con = ConnectionDB.getConnection();
 		PreparedStatement stat = con.prepareStatement("INSERT INTO user_reviews VALUES (?,?,?)");
-		stat.setString(1, school_id);
+		stat.setInt(1,Integer.parseInt(school_id));
 		stat.setString(2, name);
 		stat.setString(3, review);
-		stat.executeQuery();
+		stat.executeUpdate();
 	}
 }
