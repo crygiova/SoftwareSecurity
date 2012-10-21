@@ -9,6 +9,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/Huzvak/glassfish3/glassfish/domains/domain1/applications/esapi/esapi-2.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/Huzvak/glassfish3/glassfish/domains/domain1/applications/SoftwareSecurity/libraries/esapi-2.0.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
