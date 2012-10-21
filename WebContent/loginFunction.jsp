@@ -1,6 +1,6 @@
 
 <%-- Log in funtion for the normal users login --%>
-<%@page errorPage = "error.jsp" %>
+
 <%@ page import="swsec.*" %>
 <% 
     if(!SessionControl.isExpired(session))

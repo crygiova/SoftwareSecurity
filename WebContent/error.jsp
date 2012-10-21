@@ -7,6 +7,7 @@
 <%@ page isErrorPage = "true" %>
 <div class="message">
 An error has occurred:<br /><br />
+<%= exception.getMessage()%>
 </div>
 </body>
 </html>

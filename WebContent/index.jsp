@@ -1,4 +1,4 @@
-<%@page errorPage = "error.jsp" %>
+
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
 
@@ -16,7 +16,14 @@
         <title>LUT 2.0 - Help Students Conquer the World </title>
     </head>
     <body>
+    <% if(SessionControl.isExpired(session))
+    { %> 
         <h1>Hi student!</h1>
+    <% }
+     else
+     {%>
+     	<h1>Hi <%= session.getAttribute("login")%>!</h1>
+     <%}%>
         <table border="0">
             <thead>
                 <tr>
