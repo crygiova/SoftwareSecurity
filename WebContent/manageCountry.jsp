@@ -7,6 +7,9 @@
 	}
 	else
 	{
-		out.println("country");
+	%>
+	
+		
+	<%
 	}
 %>

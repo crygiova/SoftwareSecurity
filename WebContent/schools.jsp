@@ -15,14 +15,13 @@
     	
     		//regular expr for sql injectoin, we have tu put it into a constant library so 
 
-    		if(!country_name.matches("^[a-zA-Z0-9]+$"))
+    		if(!country_name.matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$"))
     		{
-    			response.sendRedirect("./error.jsp");
+    			response.sendRedirect("./error.jsp"); //country with weird chars
     		}
-    		String country = request.getParameter("country");
-    		ResultSet rs = Query.selectSchools(country);
-    		if(!rs.next()) response.sendRedirect("./error.jsp");
-    		rs.previous();
+    		out.println(country_name);
+    		if (!Query.countryCheck(country_name)) response.sendRedirect("./error.jsp"); //country not found in the DB
+    		ResultSet rs = Query.selectSchools(country_name);
     %>
 	<%-- --%>
 		
@@ -32,10 +31,10 @@
 		    <head>
 		        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		        <link rel="stylesheet" type="text/css" href="lutstyle.css">
-		        <title>LUT 2.0 - <% out.print(country); %>  </title>
+		        <title>LUT 2.0 - <% out.print(country_name); %>  </title>
 		    </head>
 		    <body>
-		        <h1> Approved schools in <% out.print(country); %></h1>
+		        <h1> Approved schools in <% out.print(country_name); %></h1>
 		        <br><br>
 		        <%
 		        while(rs.next())

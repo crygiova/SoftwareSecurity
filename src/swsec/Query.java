@@ -15,7 +15,7 @@ public class Query {
 	
 	public static ResultSet selectSchools(String countryFullName) throws Exception
 	{
-		Connection con = ConnectionDB.getConnection();
+		Connection con = ConnectionDB.getUserConnection();
 		PreparedStatement stat=con.prepareStatement("SELECT * FROM country, school WHERE school.country = country.short_name AND country.full_name = ?");
 		stat.setString(1, countryFullName);
 		return stat.executeQuery();
@@ -23,10 +23,20 @@ public class Query {
 	
 	public static ResultSet selectReviews(String school_name) throws Exception
 	{
-		Connection con = ConnectionDB.getConnection();
+		Connection con = ConnectionDB.getUserConnection();
 		PreparedStatement  stat = con.prepareStatement("SELECT * FROM user_reviews, school WHERE user_reviews.school_id = school.school_id AND school.full_name = ?");
 		stat.setString(1,school_name);
 		return stat.executeQuery();
+	}
+	
+	public static boolean countryCheck(String country) throws Exception
+	{
+		ResultSet rs = null;
+		Connection con = ConnectionDB.getUserConnection();
+		PreparedStatement  stat = con.prepareStatement("SELECT * FROM country WHERE full_name = ?");
+		stat.setString(1,country);
+		rs = stat.executeQuery();
+		return rs.next();
 	}
 	
 	public static void insertReview(String school_id, String name, String review) throws Exception

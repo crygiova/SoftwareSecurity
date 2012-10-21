@@ -18,15 +18,17 @@
     	{
     		response.sendRedirect("./error.jsp"); //Invalid user name
     	}
-    	if(!review.matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$") || review.length()==0)
+    	else if(!review.matches("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$") || review.length()==0)
     	{
     		response.sendRedirect("./error.jsp"); //Invalid review chars
     	}
-		if(!school_id.matches("^[a-zA-Z0-9]+$") || review.length()==0)
+    	else if(!school_id.matches("^[a-zA-Z0-9]+$") || review.length()==0)
 		{
 			response.sendRedirect("./error.jsp"); //Invalid school ID
 		}
-		Query.insertReview(school_id, name, review);
+    	else {
+    		Query.insertReview(school_id, name, review);
+    	}
 	%>
 		
 		<%@page contentType="text/html" pageEncoding="UTF-8"%>
