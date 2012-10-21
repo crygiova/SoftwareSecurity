@@ -69,4 +69,19 @@ public class Query {
 		stat.setString(5, country);
 		stat.executeUpdate();
 	}
+	
+	public static ResultSet selectUsers() throws Exception
+	{
+		Connection con = ConnectionDB.getUserConnection();
+		PreparedStatement  stat = con.prepareStatement("SELECT LOGIN FROM NORMAL_USER");
+		return stat.executeQuery();
+	}
+	
+	public static void deleteUser(String user) throws Exception
+	{
+		Connection con = ConnectionDB.getConnection();
+		PreparedStatement stat = con.prepareStatement("DELETE FROM NORMAL_USER WHERE LOGIN = ?");
+		stat.setString(1, user);
+		stat.executeUpdate();
+	}
 }
