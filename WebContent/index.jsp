@@ -16,13 +16,14 @@
         <title>LUT 2.0 - Help Students Conquer the World </title>
     </head>
     <body>
+    <h1>Hi 
     <% if(SessionControl.isExpired(session))
     { %> 
-        <h1>Hi student!</h1>
+        student!</h1>
     <% }
      else
      {%>
-     	<h1>Hi <%= session.getAttribute("login")%>!</h1>
+   		 <%= session.getAttribute("login")%>!</h1>
      <%}%>
         <table border="0">
             <thead>
