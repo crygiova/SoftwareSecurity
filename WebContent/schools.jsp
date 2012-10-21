@@ -19,7 +19,6 @@
     		{
     			response.sendRedirect("./error.jsp"); //country with weird chars
     		}
-    		out.println(country_name);
     		if (!Query.countryCheck(country_name)) response.sendRedirect("./error.jsp"); //country not found in the DB
     		ResultSet rs = Query.selectSchools(country_name);
     %>
