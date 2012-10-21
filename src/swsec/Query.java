@@ -48,4 +48,13 @@ public class Query {
 		stat.setString(3, review);
 		stat.executeUpdate();
 	}
+	
+	public static void insertCountry(String shortName, String name) throws Exception
+	{
+		Connection con = ConnectionDB.getConnection();
+		PreparedStatement stat = con.prepareStatement("INSERT INTO country VALUES (?,?)");
+		stat.setString(1, shortName);
+		stat.setString(2, name);
+		stat.executeUpdate();
+	}
 }
