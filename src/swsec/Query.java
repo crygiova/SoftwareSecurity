@@ -57,4 +57,16 @@ public class Query {
 		stat.setString(2, name);
 		stat.executeUpdate();
 	}
+	
+	public static void insertSchool(String schoolFull, String SchoolShort, String city, String zip, String country) throws Exception
+	{
+		Connection con = ConnectionDB.getConnection();
+		PreparedStatement stat = con.prepareStatement("INSERT INTO school (full_name, short_name, place, zip, country) VALUES (?,?,?,?,?)");
+		stat.setString(1, schoolFull);
+		stat.setString(2, SchoolShort);
+		stat.setString(3, city);
+		stat.setInt(4, Integer.parseInt(zip));
+		stat.setString(5, country);
+		stat.executeUpdate();
+	}
 }

@@ -10,27 +10,42 @@
 	{
 			response.sendRedirect("./logout.jsp");
 	}
-	else
+    else
 	{
 	
 	    //control that the using method is POST
 	    if(request.getMethod().compareToIgnoreCase("POST")==0)
 		{
-	    	String shortName = request.getParameter("short_name");
-	    	String name = request.getParameter("name");
+	    	String schoolFull = request.getParameter("school_full");
+	    	String schoolShort = request.getParameter("school_short");
+	    	String city = request.getParameter("city");
+	    	String zip = request.getParameter("zip");
+	    	String countryShort = request.getParameter("country_short");
 	    	boolean invalidString;
 	    	boolean empty = false;
-	    	if(!shortName.matches(("^[a-zA-Z0-9]+$")) || shortName.length()==0)
+	    	if(!schoolFull.matches(("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) || schoolFull.length()==0)
+	    	{
+	    		response.sendRedirect("./error.jsp"); //Invalid school full name
+	    	}
+	    	else if(!schoolShort.matches(("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) || schoolShort.length()==0)
+	    	{
+	    		response.sendRedirect("./error.jsp"); //Invalid school short name
+	    	}
+	    	else if(!city.matches(("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) || city.length()==0)
+	    	{
+	    		response.sendRedirect("./error.jsp"); //Invalid city name
+	    	}
+	    	else if(!zip.matches(("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) || zip.length()==0)
+	    	{
+	    		response.sendRedirect("./error.jsp"); //Invalid zip code
+	    	}
+	    	else if(!countryShort.matches(("^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$")) || countryShort.length()==0)
 	    	{
 	    		response.sendRedirect("./error.jsp"); //Invalid country short name
 	    	}
-	    	else if(!name.matches("^[a-zA-Z0-9]+$") || name.length()==0)
-			{
-				response.sendRedirect("./error.jsp"); //Invalid country name
-			}
 	    	else 
 	    	{
-	    		Query.insertCountry(shortName, name);
+	    		Query.insertSchool(schoolFull,schoolShort,city,zip,countryShort);
 	    	}
 		%>
 		
@@ -44,7 +59,7 @@
 		        <title>Country added!</title>
 		    </head>
 		    <body>
-		        <h1><%out.print(name); %> added!</h1>
+		        <h1><%out.print(schoolFull); %> (<%out.print(schoolShort); %>)  added!</h1>
 			</body>
 		</html>
 	<%-- Added by crygiova -- POST CONTROL  --%>
