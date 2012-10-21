@@ -43,7 +43,7 @@
                                 	while(rs.next())
                                 	{
                                 	%>
-                                		<option value="<c:out value="<%=rs.getString("full_name") %>"/>"></option>
+                                		<option value="<%=rs.getString("full_name") %>"/><%=rs.getString("full_name") %></option>
                                 	<% 
                                 	}
                                 %>
