@@ -68,11 +68,14 @@
 		                            Your name: <input type="text" name="name" />
 		                            <br><br>
 		                            <input type="submit" value="Add review" />
+		                         </form>
 		                    </td>
 		                </tr>
 		            </tbody>
 		        </table>
+		        
 			<jsp:include page="loginButton.jsp" flush="true"/>
+			
 		    </body>
 		</html>
 	<%-- Added by crygiova -- POST CONTROL  --%>
@@ -82,7 +85,7 @@
 	else
 	{
 		//general jsp exception throw -> A generic exception known to the JSP engine; uncaught JspExceptions will result in an invocation of the errorpage machinery. 
-  		throw new JspException("Wrong Method! U r using GET and not POST");  
+  		//throw new JspException("Wrong Method! U r using GET and not POST");  
   	
 	}
 	%>

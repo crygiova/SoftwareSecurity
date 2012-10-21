@@ -1,5 +1,7 @@
 <%@ page import="swsec.*" %>
 <%
+	//Authentication obj = new Authentication();
+	//obj.createUserNormal("gonchos@gmail.com", "1234");
     if(!SessionControl.isExpired(session))
     {
 			response.sendRedirect("./");//TODO rimandare all index
@@ -33,8 +35,8 @@
 	                            <p>
 	                                Password:</font><input type="password" name="password" size="20"></p>
 	                            <p><input type="submit" value="submit" name="login"></p>
-	                        </form></td>
-	                </tr>
+	                        </form>
+	                <p>if you are not register yet click <a href="registration.jsp">here</a></p></td></tr>
 	            </tbody>
 	        </table>
 	        <%
