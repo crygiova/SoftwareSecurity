@@ -1,5 +1,7 @@
 package swsec;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.http.*;
 
 public class SessionControl {
@@ -13,6 +15,15 @@ public class SessionControl {
 	public static boolean isExpiredAdmin(HttpSession session)
 	{
 		if((session.getAttribute("user")==null || session.getAttribute("user")=="") && session.getAttribute("admin")!="yes")
+		{	
+			return true;
+		}	
+		return false;
+	}
+	
+	public static boolean isExpired(HttpSession session)
+	{
+		if((session.getAttribute("login")==null || session.getAttribute("login")==""))
 		{	
 			return true;
 		}	
@@ -34,5 +45,17 @@ public class SessionControl {
 	{
 		return sessionlong;
 	}
+	
+	public static boolean verifyEmailAddress(String regEmail) {
+	    boolean result = true;
+	   try {
+	        InternetAddress emailAddr = new InternetAddress(regEmail);
+	        emailAddr.validate();
+	    } catch (AddressException ex) {
+	        result = false;
+	    }
+	    return result;
+	}
+
 
 }

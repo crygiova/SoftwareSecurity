@@ -31,7 +31,7 @@ public class Authentication {
    * @throws NoSuchAlgorithmException If the algorithm SHA-1 is not supported by the JVM
  * @throws ClassNotFoundException 
    */
-  public boolean authenticate(String login, String password)
+  public boolean authenticate(String login, String password, String table_name)
           throws SQLException, NoSuchAlgorithmException, ClassNotFoundException{
       boolean authenticated=false;
 	  Connection con = ConnectionDB.getConnection();
@@ -47,8 +47,15 @@ public class Authentication {
               login="";
               password="";
           }
-
-          ps = con.prepareStatement("SELECT PASSWORD, SALT FROM CREDENTIAL WHERE LOGIN = ?");
+          
+          if(table_name.compareToIgnoreCase("CREDENTIAL")==0)
+          {
+        	  ps = con.prepareStatement("SELECT PASSWORD, SALT FROM CREDENTIAL WHERE LOGIN = ?");
+          }
+          else
+          {
+        	  ps = con.prepareStatement("SELECT PASSWORD, SALT FROM NORMAL_USER WHERE LOGIN = ?");
+          }
           ps.setString(1, login);
           rs = ps.executeQuery();
           String digest, salt;
@@ -60,7 +67,7 @@ public class Authentication {
                   throw new SQLException("Database inconsistant Salt or Digested Password altered");
               }
               if (rs.next()) { // Should not append, because login is the primary key
-                  throw new SQLException("Database inconsistent two CREDENTIALS with the same LOGIN");
+                  throw new SQLException("Database inconsistent two "+table_name+" with the same LOGIN");
               }
           } else { // TIME RESISTANT ATTACK (Even if the user does not exist the
               // Computation time is equal to the time needed for a legitimate user
@@ -96,7 +103,7 @@ public class Authentication {
  * @throws UnsupportedEncodingException 
  * @throws ClassNotFoundException 
    */
-  public boolean createUser(String login, String password)
+  public boolean createUserNormal(String login, String password)
           throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException, ClassNotFoundException
   {
 	  Connection con = ConnectionDB.getConnection();
@@ -113,7 +120,7 @@ public class Authentication {
               String sDigest = byteToBase64(bDigest);
               String sSalt = byteToBase64(bSalt);
 
-              ps = con.prepareStatement("INSERT INTO CREDENTIAL (LOGIN, PASSWORD, SALT) VALUES (?,?,?)");
+              ps = con.prepareStatement("INSERT INTO NORMAL_USER (LOGIN, PASSWORD, SALT) VALUES (?,?,?)");
               ps.setString(1,login);
               ps.setString(2,sDigest);
               ps.setString(3,sSalt);

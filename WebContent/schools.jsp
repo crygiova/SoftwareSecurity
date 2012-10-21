@@ -1,6 +1,6 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page errorPage = "error.jsp" %>
+
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
 
@@ -8,7 +8,7 @@
 	<%-- Added by gonch -- POST CONTROL  --%>
     <%
     	//control that the using method is POST
-        if(request.getMethod().compareToIgnoreCase("POST")==0)
+        if(request.getMethod().compareToIgnoreCase("GET")!=0)
     	{ 
     	
     		String country_name = request.getParameter("country");
@@ -76,6 +76,7 @@
 		        <%
 		        }
 		        %>
+		        <jsp:include page="loginButton.jsp" flush="true"/>
 		    </body>
 		</html>
 		

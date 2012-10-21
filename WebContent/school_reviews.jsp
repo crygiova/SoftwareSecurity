@@ -1,13 +1,11 @@
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page errorPage = "error.jsp" %>
+
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
 	
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
     //control that the using method is POST
-    if(request.getMethod().compareToIgnoreCase("POST")==0)
+    if(request.getMethod().compareToIgnoreCase("GET")!=0)
 	{ 
     	String school_fullname = request.getParameter("school_fullname");
     	String school_shortname = request.getParameter("school_shortname");
@@ -26,13 +24,7 @@
 		rs.previous();
     	
 	%>
-	<%--  
 	
-		<sql:query var="reviews" dataSource="jdbc/lut2">
-		    SELECT * FROM user_reviews, school
-		    WHERE user_reviews.school_id = school.school_id
-		    AND school.full_name = ? <sql:param value="${param.school_fullname}"/>
-		</sql:query>--%>
 		
 		<%@page contentType="text/html" pageEncoding="UTF-8"%>
 		<!DOCTYPE html>
@@ -80,7 +72,7 @@
 		                </tr>
 		            </tbody>
 		        </table>
-		
+			<jsp:include page="loginButton.jsp" flush="true"/>
 		    </body>
 		</html>
 	<%-- Added by crygiova -- POST CONTROL  --%>

@@ -45,7 +45,9 @@
 		        Your contribution is appreciated.<br>
 		        You will be redirected to the LUT2.0 main page in a few seconds.
 		    </tr>
+		    <jsp:include page="loginButton.jsp" flush="true"/>
 		</body>
+		
 		</html>
 	<%-- Added by crygiova -- POST CONTROL  --%>
 	<%

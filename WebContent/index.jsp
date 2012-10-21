@@ -1,5 +1,3 @@
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page errorPage = "error.jsp" %>
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
@@ -38,7 +36,7 @@
                                 	while(rs.next())
                                 	{
                                 	%>
-                                		<option value="<c:out value="<%=rs.getString("full_name") %>"/>"><c:out value="<%=rs.getString("full_name") %>"/></option>
+                                		<option value="<c:out value="<%=rs.getString("full_name") %>"/>"></option>
                                 	<% 
                                 	}
                                 %>
@@ -50,6 +48,6 @@
                 </tr>
             </tbody>
         </table>
-
+		<jsp:include page="loginButton.jsp" flush="true"/>
     </body>
 </html>

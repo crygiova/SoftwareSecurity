@@ -1,9 +1,8 @@
 <%@ page import="swsec.*" %>
 <%
-
-    if(!SessionControl.isExpiredAdmin(session))
+    if(!SessionControl.isExpired(session))
     {
-    	response.sendRedirect("./adminhome.jsp");
+			response.sendRedirect("./");//TODO rimandare all index
     }
     else
     {
@@ -15,22 +14,22 @@
 	    <head>
 	        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	        <link rel="stylesheet" type="text/css" href="lutstyle.css">
-	        <title>LUTAdmin</title>
+	        <title>Login Users</title>
 	    </head>
 	    <body>
-	        <h1>Welcome to the LUT administration pages!</h1>
+	        <h1>Welcome to the LUT</h1>
 	        <table border="0">
 	            <thead>
 	                <tr>
-	                    <th>Log on here to perform administrative tasks</th>
+	                    <th>Log on here</th>
 	                </tr>
 	            </thead>
 	            <tbody>
 	                <tr>
-	                    <td><form method="post" action="login.jsp">
+	                    <td><form method="post" action="loginFunction.jsp">
 	
 	                            <p>
-	                                Username:</font><input type="text" name="username" size="20"></p>
+	                                Email: </font><input type="text" name="username" size="20"></p>
 	                            <p>
 	                                Password:</font><input type="password" name="password" size="20"></p>
 	                            <p><input type="submit" value="submit" name="login"></p>
@@ -67,3 +66,4 @@
 	</html>
 <%}
 %>
+

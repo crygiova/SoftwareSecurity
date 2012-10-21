@@ -1,10 +1,10 @@
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page errorPage = "error.jsp" %>
+
+
 <%@ page import="swsec.*" %>
 
 	<%-- Added by crygiova -- POST CONTROL  --%>
     <% 
+    
     
     if(!SessionControl.isExpiredAdmin(session))
     {
@@ -32,7 +32,7 @@
 			<% if(!error)//if the string request r matching with our regexpr
 			{	
 				Authentication obj = new Authentication();
-				if(obj.authenticate(username, password))//if the loginadmin query returns true
+				if(obj.authenticate(username, password,"CREDENTIAL"))//if the loginadmin query returns true
 				{
 						session.setAttribute("user",username);//creating a session
 						session.setAttribute("admin","yes");//creating a flag for the session
