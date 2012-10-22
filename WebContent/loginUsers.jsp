@@ -1,4 +1,6 @@
 <%@ page import="swsec.*" %>
+<%@ taglib prefix="csrf" 
+	uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" %>
 <%
 	//Authentication obj = new Authentication();
 	//obj.createUserNormal("gonchos@gmail.com", "1234");

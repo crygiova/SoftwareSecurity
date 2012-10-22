@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="csrf" 
+	uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" %>
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
 	
