@@ -1,7 +1,12 @@
 <%@ page import="swsec.*" %>
 
 <%-- Home page for the administration --%>
-	<%if(SessionControl.isExpiredAdmin(session)) //controls if the last session was expired
+
+	<%
+	//response.setHeader("Cache-Control","no-cache"); 
+	//response.setHeader("Pragma","no-cache"); 
+	//response.setDateHeader ("Expires", 0); 
+	if(SessionControl.isExpiredAdmin(session)) //controls if the last session was expired
 	{
 			response.sendRedirect("./logout.jsp");
 	}
@@ -18,7 +23,7 @@
 		<body> <!-- TO DO SESSSION CONTROL -->
 					
 					<h1>Login succeeded</h1> 
-					                Welcome <% out.println(session.getAttribute("user"));%>
+					               WWWWWWWWWelcome <% out.println(session.getAttribute("user"));%>
 					                <br>
 					                <br>
 						            <table>
