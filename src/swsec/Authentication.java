@@ -54,12 +54,19 @@ public class Authentication {
           }
           else
           {
-        	  ps = con.prepareStatement("SELECT PASSWORD, SALT FROM NORMAL_USER WHERE LOGIN = ?");
+        	  ps = con.prepareStatement("SELECT PASSWORD, SALT,FLAG FROM NORMAL_USER WHERE LOGIN = ?");
           }
           ps.setString(1, login);
           rs = ps.executeQuery();
           String digest, salt;
           if (rs.next()) {
+        	  if(table_name.compareToIgnoreCase("CREDENTIAL")!=0)
+        	  {
+        		  if(rs.getString("FLAG").compareTo("0")==0)
+        		  {
+        			  return false;
+        		  }
+        	  }
               digest = rs.getString("PASSWORD");
               salt = rs.getString("SALT");
               // DATABASE VALIDATION
