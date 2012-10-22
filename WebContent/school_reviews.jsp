@@ -1,8 +1,8 @@
 
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
-	
-	<%-- Added by crygiova -- POST CONTROL  --%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+		
     <% 
     //control that the using method is POST
     if(request.getMethod().compareToIgnoreCase("GET")!=0)
@@ -24,10 +24,7 @@
 		rs.previous();
     	
 	%>
-	
-		
-		<%@page contentType="text/html" pageEncoding="UTF-8"%>
-		<!DOCTYPE html>
+	<!DOCTYPE html>
 		<html>
 		    <head>
 		        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -50,29 +47,35 @@
 		        	out.print(rs.getString(2));
 		        	out.print("<br><br>");
 		        }
+		        if(!SessionControl.isExpired(session))//if we are logged
+    			{%>
+			        <table border="0">
+			            <thead>
+			                <tr>
+			                    <th colspan="2">Help improving LUT2.0 by adding a review of <%out.print(school_shortname); %></th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <tr>
+			                    <td>
+			                        <form action="add_review.jsp"  method="POST">
+			                            <input type="hidden" name="school_id" value="<%out.print(school_id); %>" />
+			                            <textarea name="review" rows=10 cols=60 autofocus="on"></textarea>
+			                            <br><br>
+			                            Your name: <input type="text" name="name" />
+			                            <br><br>
+			                            <input type="submit" value="Add review" />
+			                         </form>
+			                    </td>
+			                </tr>
+			            </tbody>
+			        </table>
+		       <% }
+		        else
+		        {
 		        %>
-
-		        <table border="0">
-		            <thead>
-		                <tr>
-		                    <th colspan="2">Help improving LUT2.0 by adding a review of <%out.print(school_shortname); %></th>
-		                </tr>
-		            </thead>
-		            <tbody>
-		                <tr>
-		                    <td>
-		                        <form action="add_review.jsp"  method="POST">
-		                            <input type="hidden" name="school_id" value="<%out.print(school_id); %>" />
-		                            <textarea name="review" rows=10 cols=60 autofocus="on"></textarea>
-		                            <br><br>
-		                            Your name: <input type="text" name="name" />
-		                            <br><br>
-		                            <input type="submit" value="Add review" />
-		                         </form>
-		                    </td>
-		                </tr>
-		            </tbody>
-		        </table>
+		        		Login for making a Review.
+		       <% }%>
 		        
 			<jsp:include page="loginButton.jsp" flush="true"/>
 			
