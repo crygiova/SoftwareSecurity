@@ -1,6 +1,5 @@
 <%@ page import="swsec.*" %>
-<%@ taglib prefix="csrf" 
-	uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" %>
+
 <%-- Home page for the administration --%>
 	<%if(SessionControl.isExpiredAdmin(session)) //controls if the last session was expired
 	{

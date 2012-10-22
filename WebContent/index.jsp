@@ -1,8 +1,6 @@
 
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
-<%@ taglib prefix="csrf" 
-	uri="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld" %>
 
 <%
 	ResultSet rs = Query.SelectCountry();
@@ -39,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>
-                    	<csrf:form action="schools.jsp" method="POST">
+                    	<form action="schools.jsp" method="POST">
                             <strong>Select a country:</strong>
                             <select name="country">
                                 <%
@@ -53,7 +51,7 @@
                             </select>
                             
                             <input type="submit" value="submit" />
-                        </csrf:form>
+                        </form>
                  	</td>
                 </tr>
             </tbody>
