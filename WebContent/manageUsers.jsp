@@ -33,6 +33,10 @@
 						<p><% out.println(rs.getString(1));%></p>
 					</td>
 					<td>
+					<% if(rs.getInt(2)==1) out.println("Confirmed");
+					   else out.println("Not Confirmed"); %>
+					</td>
+					<td>
 						<form action="deleteUser.jsp" method="POST">
 							<input type="hidden" name="user" value="<% out.print(rs.getString(1));%>"/>
 							<input type="submit" value="Delete User" />

@@ -73,7 +73,7 @@ public class Query {
 	public static ResultSet selectUsers() throws Exception
 	{
 		Connection con = ConnectionDB.getUserConnection();
-		PreparedStatement  stat = con.prepareStatement("SELECT LOGIN FROM NORMAL_USER");
+		PreparedStatement  stat = con.prepareStatement("SELECT LOGIN, FLAG FROM NORMAL_USER");
 		return stat.executeQuery();
 	}
 	

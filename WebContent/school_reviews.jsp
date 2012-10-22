@@ -62,8 +62,6 @@
 			                            <input type="hidden" name="school_id" value="<%out.print(school_id); %>" />
 			                            <textarea name="review" rows=10 cols=60 autofocus="on"></textarea>
 			                            <br><br>
-			                            Your name: <input type="text" name="name" />
-			                            <br><br>
 			                            <input type="submit" value="Add review" />
 			                         </form>
 			                    </td>
