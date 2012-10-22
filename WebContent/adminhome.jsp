@@ -3,9 +3,9 @@
 <%-- Home page for the administration --%>
 
 	<%
-	//response.setHeader("Cache-Control","no-cache"); 
-	//response.setHeader("Pragma","no-cache"); 
-	//response.setDateHeader ("Expires", 0); 
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Pragma","no-cache"); 
+	response.setDateHeader ("Expires", 0); 
 	if(SessionControl.isExpiredAdmin(session)) //controls if the last session was expired
 	{
 			response.sendRedirect("./logout.jsp");
@@ -16,14 +16,13 @@
 		    <head>
 		    	
 		        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 		        <link rel="stylesheet" type="text/css" href="lutstyle.css">
 		        <title>LUT Admin pages</title>
 		    </head>
 		<body> <!-- TO DO SESSSION CONTROL -->
 					
 					<h1>Login succeeded</h1> 
-					               WWWWWWWWWelcome <% out.println(session.getAttribute("user"));%>
+					               Welcome <% out.println(session.getAttribute("user"));%>
 					                <br>
 					                <br>
 						            <table>
