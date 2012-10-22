@@ -5,8 +5,6 @@
 <%@ page import="swsec.*" %>
 <%@page import="java.sql.*;" %>
 
-	<%-- Added by crygiova -- POST CONTROL  --%>
-	<%-- Added by gonch -- POST CONTROL  --%>
     <%
     	//control that the using method is POST
         if(request.getMethod().compareToIgnoreCase("GET")!=0)
@@ -67,6 +65,7 @@
 		                                <input type="hidden" name="school_id" value="<%= rs.getString(3)%>" />
 		                                <input type="hidden" name="school_fullname" value="<%= rs.getString(4)%>" />
 		                                <input type="hidden" name="school_shortname" value="<%= rs.getString(5)%>" />
+		                                <input type="hidden" name="flag" value="0" />
 		                                <input type="submit" value="Read reviews" />
 		                            </form>
 		                        </td>

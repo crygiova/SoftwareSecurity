@@ -27,7 +27,7 @@
 				if(obj.authenticate(login, password,"NORMAL_USER"))//if the login query returns true
 				{
 						session.setAttribute("login",login);//creating a session
-						session.setMaxInactiveInterval(SessionControl.getSessShort());
+						session.setMaxInactiveInterval(SessionControl.getSessLong());
 						response.sendRedirect("./"); //should redirect to the previus page
 			    }
 				else
