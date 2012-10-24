@@ -71,7 +71,7 @@
 	{
 	
 		//general jsp exception throw -> A generic exception known to the JSP engine; uncaught JspExceptions will result in an invocation of the errorpage machinery. 
-		throw new JspException("Wrong Method! U r using GET and not POST");  
+		throw new JspException("You are using GET and not POST, try again!");  
   	}
 }
 	%>

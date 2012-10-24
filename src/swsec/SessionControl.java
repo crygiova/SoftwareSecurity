@@ -46,7 +46,8 @@ public class SessionControl {
 		return sessionlong;
 	}
 	
-	public static boolean verifyEmailAddress(String regEmail) {
+	public static boolean verifyEmailAddress(String regEmail) 
+	{
 	    boolean result = true;
 	   try {
 	        InternetAddress emailAddr = new InternetAddress(regEmail);
@@ -56,6 +57,4 @@ public class SessionControl {
 	    }
 	    return result;
 	}
-
-
 }
