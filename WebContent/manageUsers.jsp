@@ -16,7 +16,9 @@
 	        <link rel="stylesheet" type="text/css" href="lutstyle.css">
 	        <title>Manage Users</title>
 	</head>
-	<body>    
+	<body>
+	
+	<jsp:include page="menuAdmin.jsp" flush="true"/>	    
 		<table>
 			<thead>
                     <tr>
@@ -48,6 +50,7 @@
 				%>
 		</tbody>
 		</table>
+		<jsp:include page="logoutPage.jsp" flush="true"/>			       
 	</body>	
 	<%
 	}

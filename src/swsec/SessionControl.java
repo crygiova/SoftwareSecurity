@@ -7,8 +7,8 @@ import javax.servlet.http.*;
 public class SessionControl {
 	
 	private final static int sessionshort = 5;
-	private final static int sessionormal = 30;
-	private final static int sessionlong = 60;
+	private final static int sessionormal = 120;//2 minutes
+	private final static int sessionlong = 300;//5 minutes
 	
 	/**TRUE if the session is expired
 	 * FALSE if is not expired*/

@@ -37,7 +37,7 @@
 				{
 						session.setAttribute("user",username);//creating a session
 						session.setAttribute("admin","yes");//creating a flag for the session
-						session.setMaxInactiveInterval(SessionControl.getSessShort());
+						session.setMaxInactiveInterval(SessionControl.getSessNormal());//set up of as a normal session timeout
 						response.sendRedirect("./adminhome.jsp");
 			    }
 				else

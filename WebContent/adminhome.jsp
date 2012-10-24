@@ -23,17 +23,11 @@
 					
 					<h1>Login succeeded</h1> 
 					               Welcome <% out.println(session.getAttribute("user"));%>
-					                <br>
-					                <br>
-						            <table>
-						              	<tr> 	
-						              		<td><a href="manageCountry.jsp">Manage Countries</a></td>
-						              		<td><a href="manageSchools.jsp">Manage Schools</a></td>
-						              		<td><a href="manageUsers.jsp">  Manage Users</a></td>
-						              	</tr>
-					              	</table>
-					              
-		
+					                <br><br><br>
+					                
+						 
+				 <jsp:include page="menuAdmin.jsp" flush="true"/>	          
+				<br>
 				 <jsp:include page="logoutPage.jsp" flush="true"/>			                
 		</body>
 		</html>

@@ -15,6 +15,7 @@
 	        <title>Manage Schools</title>
 	</head>
 	<body>    
+	<jsp:include page="menuAdmin.jsp" flush="true"/>	
 		<table>
 			<tr>
 				<td>
@@ -30,6 +31,7 @@
 				</td>
 			<tr>
 		</table>
+		<jsp:include page="logoutPage.jsp" flush="true"/>			       
 	</body>	
 	<%
 	}
