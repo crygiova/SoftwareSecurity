@@ -84,4 +84,22 @@ public class Query {
 		stat.setString(1, user);
 		stat.executeUpdate();
 	}
+	
+	public static void updateUserFlag(String user) throws Exception
+    {
+        Connection con = ConnectionDB.getConnection();
+        PreparedStatement stat = con.prepareStatement("UPDATE NORMAL_USER SET FLAG = '1' WHERE LOGIN = ?");
+        stat.setString(1, user);
+        stat.executeUpdate();
+    }
+    
+    public static boolean userCheck(String user) throws Exception
+    {
+        ResultSet rs = null;
+        Connection con = ConnectionDB.getUserConnection();
+        PreparedStatement  stat = con.prepareStatement("SELECT * FROM NORMAL_USER WHERE LOGIN = ?");
+        stat.setString(1,user);
+        rs = stat.executeQuery();
+        return rs.next();
+    }
 }
