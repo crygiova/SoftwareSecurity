@@ -88,10 +88,6 @@
 		if(request.getMethod().compareToIgnoreCase("GET")==0)
 		{
 		//general jsp exception throw -> A generic exception known to the JSP engine; uncaught JspExceptions will result in an invocation of the errorpage machinery. 
-  			throw new JspException("Wrong Method! You are using GET and not POST, try again!"); 
-  		} 
-  		else
-  		{
   			throw new JspException("Wrong request!");
   		} 
   	}
