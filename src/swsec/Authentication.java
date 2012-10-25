@@ -226,5 +226,35 @@ public class Authentication {
       return endecoder.encode(data);
   }
 
+  public boolean updateUserPassword(String user, String password)
+          throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException, ClassNotFoundException
+  {
+      Connection con = ConnectionDB.getConnection();
+      PreparedStatement ps = null;
+      try {
+          if (user!=null&&password!=null&&user.length()<=100){
+              // Uses a secure Random not a simple Random
+              SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+              // Salt generation 64 bits long
+              byte[] bSalt = new byte[8];
+              random.nextBytes(bSalt);
+              // Digest computation
+              byte[] bDigest = getHash(ITERATION_NUMBER,password,bSalt);
+              String sDigest = byteToBase64(bDigest);
+              String sSalt = byteToBase64(bSalt);
+
+              ps = con.prepareStatement("UPDATE NORMAL_USER SET PASSWORD=?,SALT = ? WHERE LOGIN=?");
+              ps.setString(1,sDigest);
+              ps.setString(2,sSalt);
+              ps.setString(3,user);
+              ps.executeUpdate();
+              return true;
+          } else {
+              return false;
+          }
+      } finally {
+          close(ps);
+      }
+  }
 
 }
