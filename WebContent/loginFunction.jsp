@@ -17,7 +17,7 @@
 			String password = request.getParameter("password");
 			//regular expr for sql injectoin, we have tu put it intoa constant library so 
 			boolean error = false;
-			if(!SessionControl.verifyEmailAddress(login) || !password.matches("^[a-zA-Z0-9]+$"))//controls that is an email and the password matches
+			if(!SessionControl.verifyEmailAddress(login) || !password.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})"))//controls that is an email and the password matches
 			{
 				error = true;
 			}

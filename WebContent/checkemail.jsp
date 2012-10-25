@@ -11,7 +11,7 @@
 </head>
 <body>
 <br>
-    	<h2>Please check your email to confirm the registration. Continue surfing on the <a href="./index.jsp"> home page</a></h2>	        
+    	Please check your email to confirm the registration. Continue surfing on the <a href="./index.jsp"> home page</a>       
 <br>
 </body>
 </html>

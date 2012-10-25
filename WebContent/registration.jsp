@@ -21,7 +21,7 @@ if(request.getMethod().compareToIgnoreCase("POST")==0)// fi I ve a request
    		{
    			if(password.compareTo(passalt)==0)
    			{
-	   			if(password.length()>=8)// && password.matches("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$ "))////Passwords will contain at least (1) upper case letterPasswords will contain at least (1) lower case letterPasswords will contain at least (1) number or special characterPasswords will contain at least (8) characters in lengthPassword maximum length should not be arbitrarily limited password is not sintax correct
+	   			if(password.length()>=8 && password.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})"))////Passwords will contain at least (1) upper case letterPasswords will contain at least (1) lower case letterPasswords will contain at least (1) number or special characterPasswords will contain at least (8) characters in lengthPassword maximum length should not be arbitrarily limited password is not sintax correct
 				{
 	   				if(!Query.userCheck(email))
 	   				{
@@ -72,18 +72,26 @@ if(request.getMethod().compareToIgnoreCase("POST")==0)// fi I ve a request
 						} 
 						transport.close();
 	////////////////////////////////////////////////////////////////////////////////////////////
-	   		    		response.sendRedirect("./confirmation.jsp");
+	   		    		response.sendRedirect("./checkemail.jsp");
 	   				}
 	   				else
 	   				{
 	   					%>
 			    		<script>
 	   					alert("Registration error, the user is still register");
-	   						</script>
+	   					</script>
 	
 		    			<%
 		    			
 	   				}
+	   			}
+	   			else
+	   			{
+	   				%>
+		    		<script>
+		    			alert("Registration error, the password are not sintax correct");
+		    		</script>
+	    			<%
 	   			}
    			}
    			else //if passw r different
@@ -129,11 +137,12 @@ if(request.getMethod().compareToIgnoreCase("POST")==0)// fi I ve a request
 	        </tr>
 	    </tbody>
 	</table>	
-	Passwords will contain at least (1) upper case letter<br>
-	Passwords will contain at least (1) lower case letter<br>
-	Passwords will contain at least (1) number or special character<br>
-	Passwords will contain at least (8) characters in length<br>
-	Password maximum length should not be arbitrarily limited 	   <br> 	
+	Passwords:<br>
+<ul><li> must contains one digit from 0-9</li>
+ <li>must contains one lowercase characters</li>
+ <li>must contains one uppercase characters</li>
+ <li>must contains one special symbols in the list "@#$%"</li>
+ <li>length at least 8 characters and maximum of 20	</li></ul>	
 	<jsp:include page="loginButton.jsp" flush="true"/>
 </body>
 </html>
