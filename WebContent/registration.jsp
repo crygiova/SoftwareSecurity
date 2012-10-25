@@ -21,7 +21,7 @@ if(request.getMethod().compareToIgnoreCase("POST")==0)// fi I ve a request
    		{
    			if(password.compareTo(passalt)==0)
    			{
-	   			if(password.length>=8 && password.matches("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$ "))////Passwords will contain at least (1) upper case letterPasswords will contain at least (1) lower case letterPasswords will contain at least (1) number or special characterPasswords will contain at least (8) characters in lengthPassword maximum length should not be arbitrarily limited password is not sintax correct
+	   			if(password.length()>=8 && password.matches("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$ "))////Passwords will contain at least (1) upper case letterPasswords will contain at least (1) lower case letterPasswords will contain at least (1) number or special characterPasswords will contain at least (8) characters in lengthPassword maximum length should not be arbitrarily limited password is not sintax correct
 				{
 	   				if(!Query.userCheck(email))
 	   				{
@@ -129,11 +129,11 @@ if(request.getMethod().compareToIgnoreCase("POST")==0)// fi I ve a request
 	        </tr>
 	    </tbody>
 	</table>	
-	Passwords will contain at least (1) upper case letter
-	Passwords will contain at least (1) lower case letter
-	Passwords will contain at least (1) number or special character
-	Passwords will contain at least (8) characters in length
-	Password maximum length should not be arbitrarily limited 	    	
+	Passwords will contain at least (1) upper case letter<br>
+	Passwords will contain at least (1) lower case letter<br>
+	Passwords will contain at least (1) number or special character<br>
+	Passwords will contain at least (8) characters in length<br>
+	Password maximum length should not be arbitrarily limited 	   <br> 	
 	<jsp:include page="loginButton.jsp" flush="true"/>
 </body>
 </html>

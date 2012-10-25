@@ -24,7 +24,7 @@
 			{
 				if(newpw1.compareTo(newpw2)==0)// passw 1 and 2 is equals?
 				{
-					if(newpw1.length>=8 && newpw1.matches("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$ "))////Passwords will contain at least (1) upper case letterPasswords will contain at least (1) lower case letterPasswords will contain at least (1) number or special characterPasswords will contain at least (8) characters in lengthPassword maximum length should not be arbitrarily limited password is not sintax correct
+					if(newpw1.length()>=8)// && newpw1.matches("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$ "))////Passwords will contain at least (1) upper case letterPasswords will contain at least (1) lower case letterPasswords will contain at least (1) number or special characterPasswords will contain at least (8) characters in lengthPassword maximum length should not be arbitrarily limited password is not sintax correct
 					{
 						if(obj.updateUserPassword(user,newpw1))
 						{
@@ -91,11 +91,11 @@
 	        </tr>
 	    </tbody>
 	</table>	
-	Passwords will contain at least (1) upper case letter
-	Passwords will contain at least (1) lower case letter
-	Passwords will contain at least (1) number or special character
-	Passwords will contain at least (8) characters in length
-	Password maximum length should not be arbitrarily limited 
+	Passwords will contain at least (1) upper case letter<br>
+	Passwords will contain at least (1) lower case letter<br>
+	Passwords will contain at least (1) number or special character<br>
+	Passwords will contain at least (8) characters in length<br>
+	Password maximum length should not be arbitrarily limited <br>
 	<%
 		}
     }
